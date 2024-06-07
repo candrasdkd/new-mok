@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1054473038724",
+    "firebase_url": "https://m-ok-71d05.firebaseio.com",
+    "project_id": "m-ok-71d05",
+    "storage_bucket": "m-ok-71d05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054473038724:android:5f97923682f08fb1378bd1",
+        "android_client_info": {
+          "package_name": "com.kppmining.mok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054473038724-kf49n8jetu3t0tfamfh0r73mjs12hcta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNSVaLHiU30ajMAaHh-EG4g6Ul6nGq8Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054473038724-kf49n8jetu3t0tfamfh0r73mjs12hcta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
