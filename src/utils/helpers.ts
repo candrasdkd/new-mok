@@ -1,4 +1,4 @@
-import { Dimensions, NativeModules } from "react-native";
+import { Dimensions, NativeModules, Platform } from "react-native";
 import {
     getUniqueId,
     getBrand,
@@ -12,6 +12,8 @@ import { getLocales, getTimeZone } from 'react-native-localize';
 import { REST_BASE_URL } from "./api";
 import LocalizedString from "./localization";
 
+export const ios = Platform.OS === 'ios';
+export const android = Platform.OS === 'android';
 
 export const getScreenDimensionHeight = () => Dimensions.get('window').height;
 export const getScreenDimensionWidth = () => Dimensions.get('window').width;

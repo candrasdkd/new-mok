@@ -15,6 +15,7 @@ const OtpLoginScreen: React.FC<OtpLoginProps> = ({
                 value={value}
                 placeholder={'Masukkan otp'}
                 onChangeText={(e) => onChangeOtp(e)}
+                maxLength={6}
             />
             {loading ?
                 <ActivityIndicator animating={true} color={'blue'} />

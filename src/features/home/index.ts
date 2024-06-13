@@ -1,2 +1,1 @@
-import HomeScreen from "./screens/HomeContainer";
-export default HomeScreen;
+export { default as HomeScreen } from "./screens/main/MainContainer";

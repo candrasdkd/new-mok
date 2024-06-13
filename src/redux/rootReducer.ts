@@ -2,13 +2,13 @@
 
 import { combineReducers } from '@reduxjs/toolkit';
 import loginReducer from '../features/auth/store/authSlice';
-import announcementReducer from '../features/home/store/announcementSlice';
-import appReducer from '../features/home/store/appSlice';
+import homeReducer from '../features/home/store/homeSlice';
+import profileReducer from '../features/profile/store/profileSlice';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
-  announcement: announcementReducer,
-  app: appReducer
+  home: homeReducer,
+  profile: profileReducer,
   // Tambahkan reducer lain jika diperlukan di sini
 });
 

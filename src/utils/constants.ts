@@ -25,3 +25,4 @@ export const HTTP_HEADER_FORM_DATA = 'multipart/form-data';
 export const NAV_NAME_HOME = 'Home';
 export const NAV_NAME_LOGIN = 'Login';
 export const NAV_NAME_OTP_LOGIN = 'Otp Login';
+export const NAV_NAME_PROFILE = 'PROFILE';

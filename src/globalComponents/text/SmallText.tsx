@@ -1,19 +1,20 @@
-import { Text, ViewStyle } from 'react-native'
+import { Text, TextProps, ViewStyle } from 'react-native'
 import React from 'react'
 import { COLOR_BLACK } from '../../utils/constants'
 
-interface PropsText {
+interface PropsText extends TextProps {
     fontSize?: number
     label: string
     color?: string
     bold?: boolean
     italic?: boolean
     underline?: boolean
+    textAlign?: "left" | "auto" | "right" | "center" | "justify"
     customStyle?: ViewStyle | ViewStyle[]
 }
 
 const SmallText: React.FC<PropsText> = ({
-    fontSize, color, bold, italic, underline, customStyle, label, ...props }) => {
+    fontSize, color, bold, italic, underline, customStyle, label, textAlign, ...props }) => {
     return (
         <Text
             style={[
@@ -23,7 +24,8 @@ const SmallText: React.FC<PropsText> = ({
                     color: color ? color : COLOR_BLACK,
                     fontWeight: bold ? "bold" : "normal",
                     fontStyle: italic ? 'italic' : 'normal',
-                    textDecorationLine: underline ? 'underline' : 'none'
+                    textDecorationLine: underline ? 'underline' : 'none',
+                    textAlign: textAlign ? textAlign : 'left',
                 }
             ]}
             allowFontScaling={false}

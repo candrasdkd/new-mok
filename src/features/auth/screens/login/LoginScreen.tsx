@@ -29,8 +29,6 @@ const LoginScreen: React.FC<LoginScreenProps> = ({
                 <ActivityIndicator animating={true} color={'blue'} />
                 : <Button title="Login" onPress={onLogin} />
             }
-
-
         </BaseScreen>
     );
 };

@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 import { getScreenDimensionWidth } from '../../../utils/helpers';
 
 export default StyleSheet.create({
+    // STYLE ANNOUNCEMENT
     announcementContainer: {
         flex: 1,
         justifyContent: 'center',
