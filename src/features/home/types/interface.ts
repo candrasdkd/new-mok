@@ -28,11 +28,13 @@ interface HomeState {
     downloadingAnnouncement: boolean;
     appData: AppItem[];
     downloadingApp: boolean;
+    tutorialDone: boolean;
 }
 
 interface HomeScreenProps {
     announcement: CarouselItem[];
     applist: AppItem[];
     loading: boolean;
-    // onLogout: () => void;
+    tutorialDone: boolean;
+    changeStatusOnBoard: () => {};
 }

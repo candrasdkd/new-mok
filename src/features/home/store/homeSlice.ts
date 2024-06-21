@@ -8,6 +8,7 @@ const initialState: HomeState = {
     downloadingAnnouncement: false,
     appData: [],
     downloadingApp: false,
+    tutorialDone: false,
 };
 
 const homeSlice = createSlice({
@@ -16,6 +17,9 @@ const homeSlice = createSlice({
     reducers: {
         changeMenu(state, action: PayloadAction<any>) {
             state.activeMenuId = action.payload;
+        },
+        changeStatusOnBoarding(state, action: PayloadAction<boolean>) {
+            state.tutorialDone = action.payload;
         },
         fetchAnnouncementStart(state) {
             state.downloadingAnnouncement = true;
@@ -42,7 +46,8 @@ const homeSlice = createSlice({
 
 export const {
     changeMenu, fetchAnnouncementStart, fetchAnnouncementSuccess, fetchAnnouncementEnd,
-    fetchAppStart, fetchAppSuccess, fetchAppEnd
+    fetchAppStart, fetchAppSuccess, fetchAppEnd, changeStatusOnBoarding
 } = homeSlice.actions;
 
 export default homeSlice.reducer;
+

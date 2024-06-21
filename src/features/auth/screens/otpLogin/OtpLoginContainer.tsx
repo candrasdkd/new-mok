@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { otpLoginSuccess } from '../../store/authSlice';
+import { changeStatusOnBoarding } from '../../../home/store/homeSlice';
 import OtpLoginScreen from './OtpLoginScreen';
 import { RootState } from '../../../../redux/rootReducer';
 import { sendPostRequestWithoutHeader } from '../../../../utils/helpers';
@@ -10,10 +11,8 @@ import { NAV_NAME_HOME } from '../../../../utils/constants';
 const OtpLoginContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
     const dispatch = useDispatch();
     const [otp, setOtp] = useState('');
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const authData = useSelector((state: RootState) => state.auth.authData);
-    console.log('authData', authData);
-
 
     const handleSubmit = async () => {
         setLoading(true)
@@ -26,6 +25,7 @@ const OtpLoginContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
                 .then((response) => {
                     setLoading(false)
                     dispatch(otpLoginSuccess({ ...authData, ...response }));
+                    dispatch(changeStatusOnBoarding(false))
                     navigation.replace(NAV_NAME_HOME);
                 })
                 .catch((err) => {

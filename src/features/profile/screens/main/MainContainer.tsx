@@ -4,6 +4,7 @@ import { RootState } from '../../../../redux/rootReducer';
 import ProfileScreen from './MainScreen';
 import { logout } from '../../../auth/store/authSlice';
 import { fetchProfileEnd, fetchProfileStart, fetchProfileSuccess } from '../../store/profileSlice';
+import { changeStatusOnBoarding } from '../../../home/store/homeSlice';
 import { sendGetRequest } from '../../../../utils/helpers';
 import { REST_URL_MYPROFILE } from '../../../../utils/api';
 
@@ -31,6 +32,7 @@ const ProfileContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
     const handleLogout = () => {
         // Dispatch aksi logout untuk menghapus status autentikasi pengguna
         dispatch(logout());
+        changeStatusOnBoarding(false)
         navigation.replace('Login');
     };
 

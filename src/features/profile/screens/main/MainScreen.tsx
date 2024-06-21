@@ -12,8 +12,8 @@ const ProfileScreen: React.FC<ProfileScreenPropps> = ({ profile, loading, onLogo
                 </View>
 
                 <ScrollView>
-                    {profile.generalBar.map((item) => (
-                        <View style={{ flexDirection: 'row' }}>
+                    {profile.generalBar.map((item, index) => (
+                        <View style={{ flexDirection: 'row' }} key={index.toString()}>
                             <MediumText label={`${item.label}`} customStyle={{ width: 150 }} />
                             <View style={{ flexDirection: 'row' }}>
                                 <MediumText label=":" customStyle={{ marginRight: 10 }} />
@@ -23,8 +23,8 @@ const ProfileScreen: React.FC<ProfileScreenPropps> = ({ profile, loading, onLogo
 
                     ))}
                     <View style={{ borderWidth: 0.5, marginVertical: 10 }} />
-                    {profile.generalInfo.map((item) => (
-                        <View style={{ flexDirection: 'row' }}>
+                    {profile.generalInfo.map((item, index) => (
+                        <View style={{ flexDirection: 'row' }} key={index.toString()}>
                             <MediumText label={`${item.label}`} customStyle={{ width: 150 }} />
                             <View style={{ flexDirection: 'row' }}>
                                 <MediumText label=":" customStyle={{ marginRight: 10 }} />

@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/rootReducer';
 import HomeScreen from './MainScreen';
-import { fetchAnnouncementEnd, fetchAnnouncementStart, fetchAnnouncementSuccess, fetchAppEnd, fetchAppStart, fetchAppSuccess } from '../../store/homeSlice';
+import { fetchAnnouncementEnd, fetchAnnouncementStart, fetchAnnouncementSuccess, fetchAppEnd, fetchAppStart, fetchAppSuccess, changeStatusOnBoarding } from '../../store/homeSlice';
 import { sendGetRequest, sortAsc } from '../../../../utils/helpers';
 import { REST_URL_DOWNLOAD_ANNOUNCEMENT, REST_URL_DOWNLOAD_APPLICATION_LIST } from '../../../../utils/api';
 
 const HomeContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
     const dispatch = useDispatch();
-    const { announcementData, appData, downloadingAnnouncement, downloadingApp } = useSelector((state: RootState) => state.home);
+    const { announcementData, appData, downloadingAnnouncement, downloadingApp, tutorialDone } = useSelector((state: RootState) => state.home);
+    const cek = useSelector((state: RootState) => state.home);
+    console.log('cek', cek);
+
     const { authData } = useSelector((state: RootState) => state.auth);
     const downloadAnnouncement = async () => {
         dispatch(fetchAnnouncementStart());
@@ -59,10 +62,13 @@ const HomeContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
         downloadAppMenu()
     }, []);
 
+
     return <HomeScreen
         announcement={announcementData}
         applist={appData}
         loading={downloadingAnnouncement || downloadingApp}
+        tutorialDone={tutorialDone}
+        changeStatusOnBoard={() => dispatch(changeStatusOnBoarding(true))}
     />;
 };
 
