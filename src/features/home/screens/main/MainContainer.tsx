@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/rootReducer';
+import { RootState } from '../../../../store/rootReducer';
 import HomeScreen from './MainScreen';
-import { fetchAnnouncementEnd, fetchAnnouncementStart, fetchAnnouncementSuccess, fetchAppEnd, fetchAppStart, fetchAppSuccess, changeStatusOnBoarding } from '../../store/homeSlice';
+import { fetchAnnouncementEnd, fetchAnnouncementStart, fetchAnnouncementSuccess, fetchAppEnd, fetchAppStart, fetchAppSuccess, changeStatusOnBoarding } from '../../../../store/slice/homeSlice';
 import { sendGetRequest, sortAsc } from '../../../../utils/helpers';
 import { REST_URL_DOWNLOAD_ANNOUNCEMENT, REST_URL_DOWNLOAD_APPLICATION_LIST } from '../../../../utils/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
     const dispatch = useDispatch();
     const { announcementData, appData, downloadingAnnouncement, downloadingApp, tutorialDone } = useSelector((state: RootState) => state.home);
-    const cek = useSelector((state: RootState) => state.home);
-    console.log('cek', cek);
-
     const { authData } = useSelector((state: RootState) => state.auth);
+    
     const downloadAnnouncement = async () => {
         dispatch(fetchAnnouncementStart());
         try {

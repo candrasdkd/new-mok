@@ -1,28 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, Storage } from 'redux-persist';
-import { MMKV } from "react-native-mmkv"; // Install terlebih dahulu
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import rootReducer from './rootReducer';
-
-const storage = new MMKV()
-
-const reduxStorage: Storage = {
-  setItem: (key, value) => {
-    storage.set(key, value)
-    return Promise.resolve(true)
-  },
-  getItem: (key) => {
-    const value = storage.getString(key)
-    return Promise.resolve(value)
-  },
-  removeItem: (key) => {
-    storage.delete(key)
-    return Promise.resolve()
-  },
-}
 
 const persistConfig = {
   key: 'root',
-  storage: reduxStorage,
+  storage: AsyncStorage,
   whitelist: ['auth', 'home', 'profile'], // Add whitelist here
 };
 

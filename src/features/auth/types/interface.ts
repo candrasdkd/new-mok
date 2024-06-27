@@ -17,14 +17,14 @@ interface OtpLoginProps {
 interface AuthState {
     isAuthenticated: boolean;
     authData: {
-        password: string;
-        username: string;
-        status: number;
-        message: string;
-        url: string;
-        phone: string;
-        expiredDate: string;
-        otp: string;
+        password: string | null;
+        username: string | null;
+        status: number | null;
+        message: string | null;
+        url: string | null;
+        phone: string | null;
+        expiredDate: string | null;
+        otp: string | null;
         token: string;
     };
 }

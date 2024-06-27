@@ -21,7 +21,7 @@ export const getScreenDimensionWidth = () => Dimensions.get('window').width;
 export const sortAsc = (a: any, b: any) => (a > b ? 1 : -1);
 export const sortDesc = (a: any, b: any) => (a > b ? -1 : 1);
 
-const getHttpHeaders = async (authenticationToken: string, fcmToken: string) => {
+export const getHttpHeaders = async (authenticationToken: string, fcmToken: string) => {
     const locales = getLocales();
     const language = locales && locales.length > 0 ? locales[0].languageTag : '';
     // if (!messaging().isDeviceRegisteredForRemoteMessages) {
@@ -37,11 +37,11 @@ const getHttpHeaders = async (authenticationToken: string, fcmToken: string) => 
         'X-OSName': getSystemName(),
         'X-OSVersion': getSystemVersion(),
         'X-AppVersion': getVersion(),
-        // 'X-FCMToken': fcmToken,
+        'X-FCMToken': fcmToken,
     };
 
-    if (authenticationToken && fcmToken) {
-        headers = { ...headers, Authorization: authenticationToken, 'X-FCMToken': fcmToken };
+    if (authenticationToken) {
+        headers = { ...headers, Authorization: authenticationToken};
     }
     return headers;
 };
@@ -144,7 +144,6 @@ export const sendPostRequestWithoutHeader = async (
     const headersObj = new Headers();
     const bodyStr = JSON.stringify(body);
     const method = REST_METHOD_POST;
-    console.log('bodyStr', bodyStr);
 
     const headers = await getHttpHeadersWithoutToken();
     for (const key in headers) {
@@ -153,7 +152,6 @@ export const sendPostRequestWithoutHeader = async (
     }
 
     const url = customBaseUrl ? `${customBaseUrl}${apiPath}` : `${REST_BASE_URL}${apiPath}`;
-    console.log('url', url);
 
     const response = await fetch(url, { method, body: body ? bodyStr : '', headers: { 'Content-Type': HTTP_HEADER_VALUE_JSON, } });
     return processResponse(response);
@@ -181,7 +179,7 @@ export const sendPutRequest = async (
     return processResponse(response);
 };
 
-const processResponse = async (response: any) => {
+const processResponse = async (response: any) => {    
     if (response.status === 404 || response.status === 500) {
         throw new Error(`${LocalizedString.common.errMsgMokIssue} \n${LocalizedString.common.labelCode}: ${response.status}`);
     }

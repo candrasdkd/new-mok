@@ -79,8 +79,8 @@ android {
         applicationId "com.kppmining.mok"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 358
-        versionName "1.5.204"
+        versionCode 363
+        versionName "1.5.209"
     }
     signingConfigs {
         debug {

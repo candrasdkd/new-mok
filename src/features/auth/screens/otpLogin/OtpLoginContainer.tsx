@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { otpLoginSuccess } from '../../store/authSlice';
-import { changeStatusOnBoarding } from '../../../home/store/homeSlice';
+import { setAuthData } from '../../../../store/slice/authSlice';
+import { changeStatusOnBoarding } from '../../../../store/slice/homeSlice';
 import OtpLoginScreen from './OtpLoginScreen';
-import { RootState } from '../../../../redux/rootReducer';
-import { sendPostRequestWithoutHeader } from '../../../../utils/helpers';
+import { RootState } from '../../../../store/rootReducer';
+import { getHttpHeaders, sendPostRequestWithoutHeader } from '../../../../utils/helpers';
 import { REST_URL_SEND_OTP } from '../../../../utils/api';
 import { NAV_NAME_HOME } from '../../../../utils/constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OtpLoginContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -22,9 +23,10 @@ const OtpLoginContainer: React.FC<{ navigation: any }> = ({ navigation }) => {
         }
         try {
             await sendPostRequestWithoutHeader(REST_URL_SEND_OTP, body)
-                .then((response) => {
+                .then(async (response) => {
                     setLoading(false)
-                    dispatch(otpLoginSuccess({ ...authData, ...response }));
+                    dispatch(setAuthData({ ...authData, ...response }));
+                    await AsyncStorage.setItem('authentication', JSON.stringify(await getHttpHeaders(response?.token, '')));
                     dispatch(changeStatusOnBoarding(false))
                     navigation.replace(NAV_NAME_HOME);
                 })
